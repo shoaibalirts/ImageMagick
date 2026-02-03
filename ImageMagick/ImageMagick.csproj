@@ -21,4 +21,8 @@
     <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="14.10.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="thumbnails\" />
+  </ItemGroup>
+
 </Project>
