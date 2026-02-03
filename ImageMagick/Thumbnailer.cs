@@ -17,7 +17,7 @@ namespace ImageMagick
                 Console.WriteLine($"Found {Path.GetFileName(file)} ({info.Width}x{info.Height})");
                 using(var image = new MagickImage(file))
                 {
-                    image.Resize((uint)width, 0);
+                    image.Resize(500u, 0);
                     string outputPath = Path.Combine(outputFolder, Path.GetFileName(file));
                     image.Write(outputPath);
                     thumbnails.Add(outputPath);
