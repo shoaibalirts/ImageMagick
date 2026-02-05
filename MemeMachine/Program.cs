@@ -25,34 +25,34 @@ namespace MemeMachine
 
             Console.Write("Enter text: ");
             string text = Console.ReadLine();
-            Console.WriteLine("You entered: "+text);
-            
-            using (MagickImage image = new MagickImage(imageFileFullPath))
-            {
-                var settings = new Drawables()
-                                    .Font("Arial")
-                                    .FontPointSize(36)
-                                    .FillColor(MagickColors.Red)
-                                    .TextAlignment(TextAlignment.Center); 
-                                settings.Text(100, 100, text); 
-                                image.Draw(settings);
-                                image.Write(@"C:\Users\engrs\Desktop\ProCsharp\ImageMagick\MemeMachine\assets\mette_output.jpg");
+            if (string.IsNullOrWhiteSpace(text)) 
+            { 
+                Console.WriteLine("No text entered."); 
+            }
+            else { 
+
+                using (MagickImage image = new MagickImage(imageFileFullPath))
+                {
+                    /*
+                    var settings = new Drawables()
+                                        .Font("Arial")
+                                        .FontPointSize(36)
+                                        .FillColor(MagickColors.Red)
+                                        .TextAlignment(TextAlignment.Center); 
+                                    settings.Text(100, 100, text); 
+                                    image.Draw(settings);
+                                    image.Write(@"C:\Users\engrs\Desktop\ProCsharp\ImageMagick\MemeMachine\assets\mette_output.jpg");
+                    */
+                    image.Settings.Font = "Arial";
+                    image.Settings.BackgroundColor = MagickColors.Transparent;
+                    image.Settings.FillColor = MagickColors.Red;
+
+                    image.Annotate(text, Gravity.South);
+                    image.Write(@"C:\Users\engrs\Desktop\ProCsharp\ImageMagick\MemeMachine\assets\mette_output.jpg");
+                }
             }
             Console.WriteLine("Enter any key to exit the program...");
             Console.ReadKey();
         }
     }
 }
-/*
-image.BackgroundColor = MagickColors.Gray;
-var drawables = new Drawables()
-    .Font("Impact")
-    .FontPointSize(48)
-    .FillColor(MagickColors.Red)
-    .StrokeColor(MagickColors.Black)
-    .StrokeWidth(2)
-    .Gravity(Gravity.South)
-    .Text(0, -30, text);
-
-drawables.Draw(image);
-*/
